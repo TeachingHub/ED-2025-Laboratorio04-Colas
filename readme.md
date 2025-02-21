@@ -248,7 +248,7 @@ En este ejercicio, trabajaremos con operaciones básicas de colas. Para realizar
 Desarrollar un subprograma que reciba dos colas de enteros (con el mismo número de elementos) y devuelva una nueva cola con la suma de los elementos de las colas originales.
 
 ## Entradas: 
-- Dos colas de enteros
+- Dos colas de enteros. Las colas deben quedar en el mismo estado cuando el programa finalice.
 
 ## Salida: 
 - Una cola de enteros con la suma de los elementos de las colas originales
@@ -264,13 +264,12 @@ Desarrollar un subprograma que reciba dos colas de enteros (con el mismo número
 Desarrollar un subprograma que reciba dos colas de enteros y devuelva una nueva cola con la suma de los elementos de las colas originales. Si el número de elementos no es el mismo, por ejemplo la cola1 tiene más elementos que la cola2, entonces una vez sumada la parte común se copiará en la cola resultado el resto de elementos de la cola 1.
 
 ### Entradas
-- Dos colas de enteros
+- Dos colas de enteros. Las colas deben quedar en el mismo estado cuando el programa finalice.
 
 ### Salida
 - Una cola de enteros con la suma de los elementos de las colas originales
 
 ### Ejemplos
-- (cola1: [1, 2, 3], cola2: [4, 5, 6]) => [5, 7, 9]
 - (cola1: [1, 2, 3], cola2: [4, 5]) => [5, 7, 3]
 - (cola1: [1, 2], cola2: [4, 5, 6]) => [5, 7, 6]
 
