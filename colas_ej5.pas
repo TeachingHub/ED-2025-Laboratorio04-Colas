@@ -36,8 +36,55 @@ end;
 { Complejidad en tiempo: O(n) }
 { Complejidad en espacio: O(1) }
 function esta_en_la_cola(var c: tCola; n: integer): boolean;
+var
+    encontrado: boolean;
+    elem, size, i: integer;
 begin
-    writeln('No implementado');
+    encontrado := false;
+    size := num_elems(c);
+    for i := 1 to size do
+    begin
+        elem := first(c);
+        dequeue(c);
+        enqueue(c, elem);
+        if elem = n then
+        begin
+            encontrado := true;
+        end;
+    end;
+    esta_en_la_cola := encontrado;
+end;
+
+{ Complejidad en tiempo: O(n) }
+{ Complejidad en espacio: O(n) }
+function esta_en_la_cola_2(var c: tCola; n: integer): boolean;
+var
+    aux: tCola;
+    encontrado: boolean;
+    elem: integer;
+begin
+    initialize_queue(aux);
+    encontrado := false;
+
+    while not empty_queue(c) do
+    begin
+        elem := first(c);
+        dequeue(c);
+        enqueue(aux, elem);
+        if elem = n then
+        begin
+            encontrado := true;
+        end;
+    end;
+
+    while not empty_queue(aux) do
+    begin
+        elem := first(aux);
+        dequeue(aux);
+        enqueue(c, elem);
+    end;
+
+    esta_en_la_cola_2 := encontrado;
 end;
 
 
@@ -67,8 +114,22 @@ end;
 }
 
 function posicion_en_cola(var c: tCola; n: integer): integer;
-begin
-    writeln('No implementado');
+var
+    i, elem, size, posicion: integer;
+    begin
+    posicion := -1;
+    size := num_elems(c);
+    for i := 1 to size do
+    begin
+        elem := first(c);
+        dequeue(c);
+        enqueue(c, elem);
+        if elem = n then
+        begin
+            posicion := i;
+        end;
+    end;
+    posicion_en_cola := posicion;
 end;
 
 { 
@@ -98,8 +159,38 @@ end;
 }
 
 function cola_ordenada(var c: tCola): integer;
+var
+    i, elem, prev, size, orden: integer;
 begin
-    writeln('No implementado');
+    orden := 0;
+    if num_elems(c) > 1 then
+    begin
+        size := num_elems(c);
+        prev := first(c);
+        dequeue(c); 
+        for i := 2 to size do 
+        begin
+            elem := first(c); 
+            dequeue(c); 
+            if i = 2 then
+            begin
+                if elem > prev then
+                    orden := 1 
+                else
+                    orden := -1; 
+            end
+            else
+            begin
+                if ((orden = 1) and (elem < prev)) or ((orden = -1) and (elem > prev)) then
+                begin
+                    orden := 0; 
+                end;
+            end;
+            prev := elem;
+            enqueue(c, elem);
+        end;
+    end;
+    cola_ordenada := orden; 
 end;
 
 procedure probar_ejercicio_5_1;

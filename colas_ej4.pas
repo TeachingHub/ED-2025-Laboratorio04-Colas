@@ -28,8 +28,26 @@ end;
 
 }
 procedure sumar_colas_1(c1, c2: tCola; var c3: tCola);
+var
+    i, size_c1, elem1, elem2: integer;
+
 begin
-    WriteLn('No implementado');
+    size_c1 := num_elems(c1);
+    initialize_queue(c3);
+    for i := 1 to size_c1 do
+    begin
+        // Sacamos y metemos en la primera cola
+        elem1 := first(c1);
+        dequeue(c1);
+        enqueue(c1, elem1);
+        // Sacamos y metemos en la segunda cola
+        elem2 := first(c2);
+        dequeue(c2);
+        enqueue(c2, elem2);
+        // Sumamos y metemos en la tercera cola
+        enqueue(c3, elem1 + elem2);
+    end;
+
 end;
 
 
@@ -51,8 +69,36 @@ end;
 
 }
 procedure sumar_colas_2(c1, c2: tCola; var c3: tCola);
+var
+    i, size, size_c1, size_c2, elem1, elem2: integer;
+
 begin
-    WriteLn('No implementado');
+    size_c1 := num_elems(c1);
+    size_c2 := num_elems(c2);
+    size := max(size_c1, size_c2);
+    initialize_queue(c3);
+    for i := 1 to size do
+    begin
+        if i <= size_c1 then
+        begin
+            elem1 := first(c1);
+            dequeue(c1);
+            enqueue(c1, elem1);
+        end
+        else
+            elem1 := 0;
+        if i <= size_c2 then
+        begin
+            elem2 := first(c2);
+            dequeue(c2);
+            enqueue(c2, elem2);
+        end
+        else
+            elem2 := 0;
+        //WriteLn('elem1: ', elem1, ' elem2: ', elem2); // Comentado para limpieza
+        enqueue(c3, elem1 + elem2);
+    end;
+
 end;
 
 

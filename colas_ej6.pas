@@ -2,8 +2,15 @@ program colas_ej6;
 
 uses
     sysutils, 
+    uCliente,
     uColaClientes;
-    // Añade las unidades que necesites para resolver el ejercicio
+
+const
+    cliente1: tCliente = (cod_cliente: '1'; activo: true);
+    cliente2: tCliente = (cod_cliente: '2'; activo: false);
+    cliente3: tCliente = (cod_cliente: '3'; activo: true);
+    cliente4: tCliente = (cod_cliente: '4'; activo: false);
+    cliente5: tCliente = (cod_cliente: '5'; activo: true);
 
 
 function bool_to_str(b: boolean): string;
@@ -16,42 +23,54 @@ end;
 
 
 
-{ 6.2.1 Crea una cola de clientes, alguno de los cuales está inactivo }
-procedure queue_example_1(var c: tCola);
+procedure eliminar_clientes_inactivos(var c: tCola);
+var
+    cliente: tCliente;
+    size, i: integer;
 begin
-    WriteLn('No implementado');
+    size := num_elems(c);
+    for i := 1 to size do
+    begin
+        cliente := first(c);
+        dequeue(c);
+        if esActivo(cliente) then
+            enqueue(c, cliente);
+    end;
 end;
 
 
-{ 6.2.1 Ahora, crea una cola de clientes con los mismos clientes que en el ejemplo anterior, 
-pero sin clientes inactivos. Esta cola se usará para comprobar que el ejercicio funciona correctamente. }
 procedure correct_queue_example_1(var c: tCola);
 begin
-    WriteLn('No implementado');
+    initialize_queue(c);
+    enqueue(c, cliente1);
+    enqueue(c, cliente3);
 end;
 
 
+procedure queue_example_1(var c: tCola);
+begin
+    initialize_queue(c);
+    enqueue(c, cliente1);
+    enqueue(c, cliente2);
+    enqueue(c, cliente3);
+end;
 
-{ 6.2.1 Crea una nueva cola de clientes, algunos de los cuales están inactivos }
 procedure correct_queue_example_2(var c: tCola);
 begin
-    WriteLn('No implementado');
+    initialize_queue(c);
+    enqueue(c, cliente1);
+    enqueue(c, cliente3);
+    enqueue(c, cliente5);
 end;
 
-
-{ 6.2.1 Ahora, crea una cola de clientes con los mismos clientes que en el ejemplo anterior,
-pero sin clientes inactivos. Esta cola se usará para comprobar que el ejercicio funciona correctamente. }
 procedure queue_example_2(var c: tCola);
 begin
-    WriteLn('No implementado');
-end;
-
-
-{ 6.3 Desarrolla un procedimiento en el fichero `cola_ej5.pas` que reciba una cola de clientes 
-y elimine todos los clientes que no están activos. }
-procedure eliminar_clientes_inactivos(var c: tCola);
-begin
-    WriteLn('No implementado');
+    initialize_queue(c);
+    enqueue(c, cliente1);
+    enqueue(c, cliente2);
+    enqueue(c, cliente3);
+    enqueue(c, cliente4);
+    enqueue(c, cliente5);
 end;
 
 
